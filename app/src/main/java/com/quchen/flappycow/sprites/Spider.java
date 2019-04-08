@@ -15,7 +15,7 @@ import com.quchen.flappycow.Util;
 
 import android.graphics.Bitmap;
 
-public class Spider extends Sprite {
+public class Spider extends CollidableSprites {
     
     /**
      * Static bitmap to reduce memory usage.

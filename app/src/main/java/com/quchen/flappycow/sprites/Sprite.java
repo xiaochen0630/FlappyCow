@@ -77,6 +77,7 @@ public abstract class Sprite {
     /**
      * Modifies the x and y coordinates according to the speedX and speedY value
      */
+
     public void move(){
         // changeToNextFrame();
         // Its more efficient if only the classes that need this implement it in their move method.
@@ -84,7 +85,7 @@ public abstract class Sprite {
         x+= speedX;
         y+= speedY;
     }
-    
+
     /**
      * Changes the frame by cycling through the columns.
      */
@@ -110,6 +111,7 @@ public abstract class Sprite {
      * @param sprite
      * @return
      */
+    /*
     public boolean isColliding(Sprite sprite){
         if(this.x + getCollisionTolerance() < sprite.x + sprite.width
                 && this.x + this.width > sprite.x + getCollisionTolerance()
@@ -119,6 +121,7 @@ public abstract class Sprite {
         }
         return false;
     }
+    */
     
     /**
      * Checks whether the sprite is touching this.
@@ -126,6 +129,7 @@ public abstract class Sprite {
      * @param sprite
      * @return
      */
+    /*
     public boolean isCollidingRadius(Sprite sprite, float factor){
         int m1x = this.x+(this.width>>1);
         int m1y = this.y+(this.height>>1);
@@ -142,6 +146,8 @@ public abstract class Sprite {
             return false;
         }
     }
+    */
+
     
     /**
      * Checks whether the point specified by the x and y coordinates is touching the sprite.
@@ -149,41 +155,50 @@ public abstract class Sprite {
      * @param y
      * @return
      */
+
     public boolean isTouching(int x, int y){
         return (x  > this.x && x  < this.x + width
             && y  > this.y && y < this.y + height);
     }
+
     
     /**
      * What should be done, when the player collide with this sprite?
      */
+    /*
     public void onCollision(){
         // Every subclass has to specify this itself
     }
+    */
     
     /**
      * Checks whether the sprite is touching the ground or the sky.
      * @return
      */
+
     public boolean isTouchingEdge(){
         return isTouchingGround() || isTouchingSky();
     }
-    
+
     /**
      * Checks whether the sprite is touching the ground.
      * @return
      */
+
     public boolean isTouchingGround(){
         return this.y + this.height > this.view.getHeight() - this.view.getHeight() * Frontground.GROUND_HEIGHT;
     }
+
     
     /**
      * Checks whether the sprite is touching the sky.
      * @return
      */
+
     public boolean isTouchingSky(){
         return this.y < 0;
     }
+
     
     /**
      * Checks whether the play has passed this sprite.
@@ -209,6 +224,7 @@ public abstract class Sprite {
         this.y = y;
     }
 
+
     public float getSpeedX() {
         return speedX;
     }
@@ -224,6 +240,7 @@ public abstract class Sprite {
     public void setSpeedY(float speedY) {
         this.speedY = speedY;
     }
+
     
     public int getWidth() {
         return width;
@@ -234,9 +251,11 @@ public abstract class Sprite {
      * Because my images have some whitespace to the edge.
      * @return
      */
+    /*
     private int getCollisionTolerance(){
         // 25 @ 720x1280 px
         return game.getResources().getDisplayMetrics().heightPixels / 50;
     }
+    */
 
 }

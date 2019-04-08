@@ -14,7 +14,7 @@ import com.quchen.flappycow.Util;
 
 import android.graphics.Bitmap;
 
-public class WoodLog extends Sprite {
+public class WoodLog extends CollidableSprites {
 
     /**
      * Static bitmap to reduce memory usage.

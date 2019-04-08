@@ -13,10 +13,13 @@ import com.quchen.flappycow.MainActivity;
 import com.quchen.flappycow.R;
 
 import android.graphics.Canvas;
+import android.graphics.Rect;
 
-public class Obstacle extends Sprite{
+public class Obstacle {
     private Spider spider;
     private WoodLog log;
+    protected GameView view;
+    protected Game game;
     
     private static int collideSound = -1;
     private static int passSound = -1;
@@ -25,20 +28,24 @@ public class Obstacle extends Sprite{
     public boolean isAlreadyPassed = false;
 
     public Obstacle(GameView view, Game game) {
+        /*
         super(view, game);
-        spider = new Spider(view, game);
-        log = new WoodLog(view, game);
-        
+        */
+        this.view = view;
+        this.game = game;
+    spider = new Spider(view, game);
+    log = new WoodLog(view, game);
+
         if(collideSound == -1){
-            collideSound = Game.soundPool.load(game, R.raw.crash, 1);
-        }
-        if(passSound == -1){
-            passSound = Game.soundPool.load(game, R.raw.pass, 1);
-        }
-        
-        initPos();
+        collideSound = Game.soundPool.load(game, R.raw.crash, 1);
     }
-    
+        if(passSound == -1){
+        passSound = Game.soundPool.load(game, R.raw.pass, 1);
+    }
+
+    initPos();
+}
+
     /**
      * Creates a spider and a wooden log at the right of the screen.
      * With a certain gap between them.
@@ -53,7 +60,7 @@ public class Obstacle extends Sprite{
         int random = (int) (Math.random() * height * 2 / 5);
         int y1 = (height / 10) + random - spider.height;
         int y2 = (height / 10) + random + gab;
-        
+
         spider.init(game.getResources().getDisplayMetrics().widthPixels, y1);
         log.init(game.getResources().getDisplayMetrics().widthPixels, y2);
     }
@@ -61,7 +68,7 @@ public class Obstacle extends Sprite{
     /**
      * Draws spider and log.
      */
-    @Override
+
     public void draw(Canvas canvas) {
         spider.draw(canvas);
         log.draw(canvas);
@@ -70,7 +77,7 @@ public class Obstacle extends Sprite{
     /**
      * Checks whether both, spider and log, are out of range.
      */
-    @Override
+
     public boolean isOutOfRange() {
         return spider.isOutOfRange() && log.isOutOfRange();
     }
@@ -78,7 +85,7 @@ public class Obstacle extends Sprite{
     /**
      * Checks whether the spider or the log is colliding with the sprite.
      */
-    @Override
+
     public boolean isColliding(Sprite sprite) {
         return spider.isColliding(sprite) || log.isColliding(sprite);
     }
@@ -86,7 +93,7 @@ public class Obstacle extends Sprite{
     /**
      * Moves both, spider and log.
      */
-    @Override
+
     public void move() {
         spider.move();
         log.move();
@@ -95,7 +102,7 @@ public class Obstacle extends Sprite{
     /**
      * Sets the speed of the spider and the log.
      */
-    @Override
+
     public void setSpeedX(float speedX) {
         spider.setSpeedX(speedX);
         log.setSpeedX(speedX);
@@ -104,7 +111,7 @@ public class Obstacle extends Sprite{
     /**
      * Checks whether the spider and the log are passed.
      */
-    @Override
+
     public boolean isPassed(){
         return spider.isPassed() && log.isPassed();
     }
@@ -122,9 +129,9 @@ public class Obstacle extends Sprite{
         }
     }
 
-    @Override
+
     public void onCollision() {
-        super.onCollision();
+        // super.onCollision();
         Game.soundPool.play(collideSound, MainActivity.volume/SOUND_VOLUME_DIVIDER, MainActivity.volume/SOUND_VOLUME_DIVIDER, 0, 0, 1);
     }
 
